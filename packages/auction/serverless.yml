@@ -10,6 +10,12 @@ provider:
   memorySize: 256
   stage: ${opt:stage, 'dev'}
   region: eu-west-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem # define the actions to be allowed
+      Resource:
+        - arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/AuctionsTable
 
 resources:
   Resources: # tells CloudFormation about the list of resources it needs to create
