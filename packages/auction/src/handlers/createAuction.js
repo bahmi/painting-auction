@@ -1,4 +1,7 @@
 import { v4 as uuid } from 'uuid';
+import AWS from 'aws-sdk';
+
+const dynamodb = new AWS.DynamoDB.DocumentClient(); // allows us to interact with the dynamodb tables
 
 async function createAuction(event, context) {
   const { title } = JSON.parse(event.body);
@@ -9,6 +12,14 @@ async function createAuction(event, context) {
     status: 'OPEN',
     createdAt: new Date().toISOString(),
   };
+
+  // add the auction to the database
+  await dynamodb
+    .put({
+      TableName: 'AuctionsTable',
+      Item: auction,
+    })
+    .promise();
 
   return {
     statusCode: 201,
