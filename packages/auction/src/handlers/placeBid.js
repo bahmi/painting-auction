@@ -7,6 +7,7 @@ import placeBidSchema from '../lib/schemas/placeBidSchema';
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
+// eslint-disable-next-line no-unused-vars
 async function placeBid(event, context) {
   const { id } = event.pathParameters;
   const { amount } = event.body;

@@ -2,6 +2,7 @@ import createError from 'http-errors';
 import { getEndedAuctions } from '../lib/getEndedAuctions';
 import { closeAuction } from '../lib/closeAuction';
 
+// eslint-disable-next-line no-unused-vars
 async function processAuctions(event, context) {
   try {
     const auctionsToClose = await getEndedAuctions(); // get the list of auctions to be closed

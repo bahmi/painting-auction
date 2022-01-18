@@ -17,7 +17,6 @@ export async function getAuctionById(id) {
 
     auction = Item;
   } catch (error) {
-    console.error(error);
     throw new createError.InternalServerError('Error getting auction');
   }
 
@@ -28,6 +27,7 @@ export async function getAuctionById(id) {
   return auction;
 }
 
+// eslint-disable-next-line no-unused-vars
 async function getAuction(event, context) {
   const { id } = event.pathParameters;
   const auction = await getAuctionById(id);

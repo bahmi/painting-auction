@@ -6,6 +6,7 @@ import listAuctionsSchema from '../lib/schemas/listAuctionsSchema';
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
+// eslint-disable-next-line no-unused-vars
 async function listAuctions(event, context) {
   const { status } = event.queryStringParameters; // get the status from the query string
   let auctions;
@@ -28,7 +29,6 @@ async function listAuctions(event, context) {
 
     auctions = Items;
   } catch (error) {
-    console.error(error);
     throw new createError.InternalServerError('Error getting auctions');
   }
 

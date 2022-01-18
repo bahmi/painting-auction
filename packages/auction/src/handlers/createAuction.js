@@ -7,6 +7,7 @@ import createAuctionSchema from '../lib/schemas/createAuctionSchema';
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(); // allows us to interact with the dynamodb tables
 
+// eslint-disable-next-line no-unused-vars
 async function createAuction(event, context) {
   const { title } = event.body;
   const endDate = new Date();
@@ -32,7 +33,6 @@ async function createAuction(event, context) {
       })
       .promise();
   } catch (error) {
-    console.error(error);
     throw new createError.InternalServerError('Error creating auction');
   }
 
