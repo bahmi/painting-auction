@@ -10,6 +10,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient(); // allows us to interact wit
 // eslint-disable-next-line no-unused-vars
 async function createAuction(event, context) {
   const { title } = event.body;
+  const { email } = event.requestContext.authorizer;
   const endDate = new Date();
   endDate.setHours(new Date().getHours() + 1); // add 1 hour to the current time
 
@@ -22,10 +23,11 @@ async function createAuction(event, context) {
     highestBid: {
       amount: 0,
     },
+    seller: email,
   };
 
-  // add the auction to the database
   try {
+    // add the auction to the database
     await dynamodb
       .put({
         TableName: process.env.AUCTIONS_TABLE_NAME,
