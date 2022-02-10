@@ -1,0 +1,9 @@
+{
+  "name": "painting-auction",
+  "version": "1.0.0",
+  "description": "Serverless application for auctioning paintings",
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}
