@@ -3,7 +3,22 @@
   "version": "1.0.0",
   "description": "Serverless application for auctioning paintings",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prettier": "prettier --check '**/*.js'",
+    "prettier:fix": "prettier --write '**/*.js'",
+    "prepare": "husky install"
+  },
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "@commitlint/cli": "^16.1.0",
+    "@commitlint/config-conventional": "^16.0.0",
+    "eslint": "^8.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lerna": "^4.0.0",
+    "lint-staged": "^12.3.3",
+    "prettier": "^2.5.1"
   }
 }

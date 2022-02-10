@@ -1,27 +1,12 @@
 {
-  "name": "auth-service",
+  "name": "auth",
   "version": "1.0.0",
-  "description": "Potect API Gateway endpoints with Auth0",
+  "description": "Potect API Gateway endpoints with lambda authorizer",
   "license": "MIT",
-  "scripts": {
-    "lint": "eslint 'src/**/*.js'",
-    "lint:fix": "eslint 'src/**/*.js' --fix",
-    "prettier": "prettier --check 'src/**/*.js'",
-    "prettier:fix": "prettier --write 'src/**/*.js'",
-    "prepare": "husky install"
-  },
   "dependencies": {
     "jsonwebtoken": "^8.1.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.0.2",
-    "@commitlint/config-conventional": "^16.0.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.1.7",
-    "prettier": "^2.5.1",
     "serverless-bundle": "^1.3.3"
   }
 }
