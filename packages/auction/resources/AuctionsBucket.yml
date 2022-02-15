@@ -1,0 +1,24 @@
+AuctionsBucket:
+  Type: AWS::S3::Bucket
+  Properties:
+    BucketName: ${self:custom.AuctionsBucket.name}
+    LifecycleConfiguration:
+      Rules:
+        - Id: ExpirePictures
+          Status: Enabled
+          ExpirationInDays: 1
+
+# by default, S3 Buckets will be blocked from the public.
+# making it read only for the public
+AuctionsBucketPolicy:
+  Type: AWS::S3::BucketPolicy
+  Properties:
+    Bucket: !Ref AuctionsBucket # referring to the bucket created above
+    PolicyDocument:
+      Statement:
+        - Sid: PublicRead
+          Effect: Allow
+          Principal: '*'
+          Action:
+            - s3:GetObject
+          Resource: arn:aws:s3:::${self:custom.AuctionsBucket.name}/* # including all subdirectories
