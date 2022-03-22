@@ -1,0 +1,37 @@
+name: Deploy Notification Service
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'packages/notification/**'
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Create env file
+        run: |
+          touch ./packages/notification/.env
+          echo APP_AWS_REGION=${{secrets.APP_AWS_REGION}} >> ./packages/notification/.env
+          echo SES_SOURCE_EMAIL=${{secrets.SES_SOURCE_EMAIL}} >> ./packages/notification/.env
+      - run: npm ci
+        working-directory: ./packages/notification
+      - name: Install Serverless Framework
+        run: npm install -g serverless
+      - name: Serverless Authentication
+        run: sls config credentials --provider aws --key ${{secrets.AWS_ACCESS_KEY_ID}} --secret ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      - name: Deploy to AWS
+        run: serverless deploy --verbose
+        working-directory: ./packages/notification
