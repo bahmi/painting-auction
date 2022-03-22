@@ -21,8 +21,7 @@ const generatePolicy = (principalId, methodArn) => {
   };
 };
 
-// eslint-disable-next-line no-unused-vars
-export async function handler(event, context) {
+export async function handler(event) {
   if (!event.authorizationToken) {
     throw 'Unauthorized';
   }
