@@ -2,8 +2,7 @@ import AWS from 'aws-sdk';
 
 const ses = new AWS.SES({ region: process.env.APP_AWS_REGION });
 
-// eslint-disable-next-line no-unused-vars
-async function sendMail(event, context) {
+async function sendMail(event) {
   // get the first email details
   const [record] = event.Records;
 
